@@ -3,8 +3,8 @@
 	"id": "leed",
 	"packaging_format": 1,
 	"description": {
-		"en": "A minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds.",
-		"fr": "Un agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive."
+		"en": "Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds.",
+		"fr": "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive."
 	},
 	"version": "1.8.3~ynh9",
 	"url": "http://leed.idleman.fr/",
@@ -18,7 +18,7 @@
 		"email": "maniackc_dev@crudelis.fr"
 	}],
 	"requirements": {
-		"yunohost": ">= 3.5"
+		"yunohost": ">= 3.8.1"
 	},
 	"multi_instance": true,
 	"services": [
@@ -79,7 +79,7 @@
 				"name": "is_public",
 				"type": "boolean",
 				"ask": {
-					"en": "Is it a public website ?",
+					"en": "Is it a public website?",
 					"fr": "Est-ce un site public ?"
 				},
 				"default": false,

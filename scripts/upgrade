@@ -8,7 +8,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-source _ynh_add_fpm_config
 
 #=================================================
 # LOAD SETTINGS
@@ -31,6 +30,7 @@ admin_mail_html=$(ynh_app_setting_get --app=$app --key=admin_mail_html)
 
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
 fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
@@ -133,13 +133,6 @@ ynh_clean_setup () {
 ynh_abort_if_errors
 
 #=================================================
-# CHECK THE PATH
-#=================================================
-
-# Normalize the URL path syntax
-path_url=$(ynh_normalize_url_path --path_url=$path_url)
-
-#=================================================
 # ACTIVATE MAINTENANCE MODE
 #=================================================
 ynh_script_progression --message="Activating maintenance mode..."
@@ -186,7 +179,7 @@ ynh_system_user_create --username=$app
 # Overwrite the php-fpm configuration only if it's allowed
 if [ $overwrite_phpfpm -eq 1 ]
 then
-    ynh_script_progression --message="Upgrading php-fpm configuration..." --weight=2
+    ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
     # Create a dedicated php-fpm config
     ynh_add_fpm_config --usage=$fpm_usage --footprint=$fpm_footprint
 fi
@@ -226,7 +219,7 @@ chown -R $app $final_path/cache $final_path/plugins $final_path/updates
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-    ynh_script_progression --message="Upgrading Leed with curl..." --weight=4
+    ynh_script_progression --message="Upgrading Leed with cURL..." --weight=4
     # Set the app as temporarily public for curl call
     ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
     # Regen SSOwat configuration
@@ -240,7 +233,7 @@ fi
 #=================================================
 # UPGRADE FAIL2BAN
 #=================================================
-ynh_script_progression --message="Reconfiguring fail2ban..." --weight=8
+ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=8
 
 # Create a dedicated fail2ban config
 ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="PHP message: Leed: wrong login for .* client: <HOST>" --max_retry=5
