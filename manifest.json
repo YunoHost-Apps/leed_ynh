@@ -6,7 +6,7 @@
 		"en": "Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds.",
 		"fr": "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive."
 	},
-	"version": "1.8.3~ynh9",
+	"version": "1.8.3~ynh10",
 	"url": "http://leed.idleman.fr/",
 	"license": "AGPL-3.0",
 	"maintainer": {
