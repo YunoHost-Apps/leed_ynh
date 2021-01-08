@@ -5,7 +5,7 @@
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer leed rapidement et simplement sur un serveur YunoHost.  
+> *Ce package vous permet d'installer Leed rapidement et simplement sur un serveur YunoHost.  
 Si vous n'avez pas YunoHost, merci de regarder [ici](https://yunohost.org/#/install_fr) pour savoir comment l'installer et en profiter.*
 
 ## Résumé
@@ -23,7 +23,7 @@ Aucune démo pour cette application.
 
 ## Configuration
 
-Utiliser le panneau d'administration de votre Jenkins pour configurer cette application.
+Utiliser le panneau d'administration de votre Leed pour configurer cette application.
 
 ## Documentation
 
