@@ -1,8 +1,8 @@
 ;; Test complet
 	; Manifest
-		domain="domain.tld"	(DOMAIN)
-		path="/leed"	(PATH)
-		admin="john"	(USER)
+		domain="domain.tld"
+		path="/leed"
+		admin="john"
 		password="pass"
 		language="fr"
 		market=1
@@ -26,6 +26,8 @@
 		setup_public=1
 		upgrade=1
 		upgrade=1	from_commit=8b622d430db9ab860aee156a32086507669243fd
+		# 1.8.3~ynh10
+		upgrade=1	from_commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
@@ -39,3 +41,5 @@ Notification=change
 	; commit=8b622d430db9ab860aee156a32086507669243fd
 		name=MAJ 1.8.2
 		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&password=pass&language=fr&market=1&is_public=1&
+	; commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
+		name=1.8.3~ynh10
