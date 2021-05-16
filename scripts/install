@@ -109,7 +109,7 @@ ynh_script_progression --message="Installing Leed with cURL..." --weight=5
 chown -R $app: $final_path
 
 # Set the app as temporarily public for curl call
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+
 # Regen SSOwat configuration
 yunohost app ssowatconf
 
@@ -162,14 +162,12 @@ ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failreg
 #=================================================
 ynh_script_progression --message="Configuring SSOwat..." --weight=2
 
-# Make app private if necessary
-ynh_app_setting_set --app=$app --key=is_public --value="$is_public"
-if [ $is_public -eq 0 ];
+
+
+# Make app public if necessary
+if [ "$is_public" -eq 1 ]
 then
-	# Remove the public access
-	ynh_app_setting_delete --app=$app --key=unprotected_uris
-	# Set the action.php script public for the cron task
-	ynh_app_setting_set --app=$app --key=skipped_uris --value="/action.php"
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================
