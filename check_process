@@ -25,7 +25,7 @@
 		setup_private=1
 		setup_public=1
 		upgrade=1
-		upgrade=1	from_commit=8b622d430db9ab860aee156a32086507669243fd
+		# upgrade=1	from_commit=8b622d430db9ab860aee156a32086507669243fd
 		# 1.8.3~ynh10
 		upgrade=1	from_commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
 		backup_restore=1
