@@ -6,7 +6,7 @@
 		password="pass"
 		language="fr"
 		market=1
-		is_public=1	(PUBLIC|public=1|private=0)
+		is_public=1
     ; Actions
         is_public=0|1
     ; Config_panel
