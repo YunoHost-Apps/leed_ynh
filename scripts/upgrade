@@ -202,6 +202,7 @@ then
     ynh_permission_update --permission="main" --add="visitors"
     # Start the upgrade procedure of leed.
     ynh_local_curl "/"
+    ynh_permission_update --permission="main" --remove="visitors"
 fi
 
 #=================================================
