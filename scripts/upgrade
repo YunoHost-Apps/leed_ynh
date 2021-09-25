@@ -216,6 +216,17 @@ ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=8
 ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="PHP message: Leed: wrong login for .* client: <HOST>" --max_retry=5
 
 #=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_script_progression --message="Configuring permissions..." --weight=1
+
+# Make app public if necessary
+if [ $is_public -eq 1 ]
+then
+    ynh_permission_update --permission="main" --add="visitors"
+fi
+
+#=================================================
 # RELOAD NGINX
 #=================================================
 ynh_script_progression --message="Reloading NGINX web server..." --weight=2
