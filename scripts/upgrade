@@ -79,27 +79,6 @@ if [ -z "$db_name" ]; then
     ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
-# If is_public doesn't exist, create it
-if [ -z "$is_public" ]; then
-    public_check=$(ynh_app_setting_get --app=$app --key=skipped_uris)
-    # If skipped_uris is empty, that was a public installation.
-    if [ -z "$public_check" ]; then
-        is_public=1
-    else
-        is_public=0
-    fi
-    ynh_app_setting_set --app=$app --key=is_public --value=$is_public
-else
-    # Fix is_public as a boolean
-    if [ "$is_public" = "Yes" ]; then
-        ynh_app_setting_set --app=$app --key=is_public --value=1
-        is_public=1
-    elif [ "$is_public" = "No" ]; then
-        ynh_app_setting_set --app=$app --key=is_public --value=0
-        is_public=0
-    fi
-fi
-
 # If overwrite_nginx doesn't exist, create it
 if [ -z "$overwrite_nginx" ]; then
     overwrite_nginx=1
@@ -220,11 +199,10 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
     ynh_script_progression --message="Upgrading Leed with cURL..." --weight=4
     # Set the app as temporarily public for curl call
-    ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-    # Regen SSOwat configuration
-    yunohost app ssowatconf
+    ynh_permission_update --permission="main" --add="visitors"
     # Start the upgrade procedure of leed.
     ynh_local_curl "/"
+    ynh_permission_update --permission="main" --remove="visitors"
 fi
 
 #=================================================
@@ -236,6 +214,17 @@ ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=8
 
 # Create a dedicated Fail2Ban config
 ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="PHP message: Leed: wrong login for .* client: <HOST>" --max_retry=5
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_script_progression --message="Configuring permissions..." --weight=1
+
+# Make app public if necessary
+if [ $is_public -eq 1 ]
+then
+    ynh_permission_update --permission="main" --add="visitors"
+fi
 
 #=================================================
 # RELOAD NGINX
