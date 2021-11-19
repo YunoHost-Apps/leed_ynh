@@ -4,62 +4,45 @@
 [![Installer Leed avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
 *[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer Leed rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, merci de regarder [ici](https://yunohost.org/#/install_fr) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d'installer Leed rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
-## Résumé
+## Vue d'ensemble
+
 Leed (contraction de Light Feed) est un agrégateur RSS/ATOM minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive.
 
-**Version embarquée :** 1.9.0
+**Version incluse :** 1.9.0~ynh2
+
+
 
 ## Captures d'écran
 
-![](http://projet.idleman.fr/leed/data/leed1.jpg)
+![](./doc/screenshots/leed1.jpg)
 
-## Démo
-
-Aucune démo pour cette application.
+## Avertissements / informations importantes
 
 ## Configuration
 
 Utiliser le panneau d'administration de votre Leed pour configurer cette application.
 
-## Documentation
+## Documentations et ressources
 
- * Documentation YunoHost : Il n'y a pas d'autre documentation, n'hésitez pas à contribuer.
+* Site officiel de l'app : http://leed.idleman.fr/
+* Dépôt de code officiel de l'app : http://git.idleman.fr/LeedRSS/Leed
+* Documentation YunoHost pour cette app : https://yunohost.org/app_leed
+* Signaler un bug : https://github.com/YunoHost-Apps/leed_ynh/issues
 
-## Fonctionnalités spécifiques à YunoHost
-
-* Login sécurisé par Fail2Ban
-
-#### Support multi-utilisateurs
-
-Non supportée.
-
-#### Architectures supportées.
-
-* x86-64 - [![](https://ci-apps.yunohost.org/ci/logs/leed%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/leed/)
-* ARMv8-A - [![](https://ci-apps-arm.yunohost.org/ci/logs/leed%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/leed/)
-
-## Informations additionnelles
-
-## Liens
-
- * Reporter un bug : https://github.com/YunoHost-Apps/leed_ynh/issues
- * Site de Leed : http://leed.idleman.fr/
- * Dépôt de Leed : http://git.idleman.fr/LeedRSS/Leed
- * Site de YunoHost : https://yunohost.org/
-
----
-
-## Informations à l'intention des développeurs
+## Informations pour les développeurs
 
 Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/leed_ynh/tree/testing).
 
-Pour tester la branche testing, merci de procéder ainsi.
+Pour essayer la branche testing, procédez comme suit.
 ```
 sudo yunohost app install https://github.com/YunoHost-Apps/leed_ynh/tree/testing --debug
 ou
 sudo yunohost app upgrade leed -u https://github.com/YunoHost-Apps/leed_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps
