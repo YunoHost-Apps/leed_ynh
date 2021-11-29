@@ -26,11 +26,6 @@ Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fas
 
 ![](./doc/screenshots/leed1.jpg)
 
-## Disclaimers / important information
-
-## Configuration
-
-Use the admin panel of your Leed to configure this app.
 ## Documentation and resources
 
 * Official app website: http://leed.idleman.fr/
