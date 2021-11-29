@@ -19,7 +19,6 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
-is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
@@ -35,7 +34,6 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # CHECK VERSION
 #=================================================
-ynh_script_progression --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
 
@@ -214,17 +212,6 @@ ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=8
 
 # Create a dedicated Fail2Ban config
 ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="PHP message: Leed: wrong login for .* client: <HOST>" --max_retry=5
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-ynh_script_progression --message="Configuring permissions..." --weight=1
-
-# Make app public if necessary
-if [ $is_public -eq 1 ]
-then
-    ynh_permission_update --permission="main" --add="visitors"
-fi
 
 #=================================================
 # RELOAD NGINX
