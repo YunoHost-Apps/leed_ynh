@@ -21,12 +21,6 @@ Leed (contraction de Light Feed) est un agrégateur RSS/ATOM minimaliste qui per
 
 ![](./doc/screenshots/leed1.jpg)
 
-## Avertissements / informations importantes
-
-## Configuration
-
-Utiliser le panneau d'administration de votre Leed pour configurer cette application.
-
 ## Documentations et ressources
 
 * Site officiel de l'app : http://leed.idleman.fr/
