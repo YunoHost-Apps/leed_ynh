@@ -22,6 +22,7 @@ admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 
 overwrite_nginx=$(ynh_app_setting_get --app=$app --key=overwrite_nginx)
 overwrite_phpfpm=$(ynh_app_setting_get --app=$app --key=overwrite_phpfpm)
@@ -200,7 +201,11 @@ then
     ynh_permission_update --permission="main" --add="visitors"
     # Start the upgrade procedure of leed.
     ynh_local_curl "/"
-    ynh_permission_update --permission="main" --remove="visitors"
+    # Make app public if necessary
+    if [ $is_public -eq 0 ]
+    then
+        ynh_permission_update --permission="main" --remove="visitors"
+    fi
 fi
 
 #=================================================
