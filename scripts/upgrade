@@ -22,7 +22,6 @@ admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 
 overwrite_nginx=$(ynh_app_setting_get --app=$app --key=overwrite_nginx)
 overwrite_phpfpm=$(ynh_app_setting_get --app=$app --key=overwrite_phpfpm)
@@ -197,15 +196,8 @@ ynh_add_config --template="../conf/cron_leed" --destination="/etc/cron.d/$app"
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
     ynh_script_progression --message="Upgrading Leed with cURL..." --weight=4
-    # Set the app as temporarily public for curl call
-    ynh_permission_update --permission="main" --add="visitors"
     # Start the upgrade procedure of leed.
     ynh_local_curl "/"
-    # Make app public if necessary
-    if [ $is_public -eq 0 ]
-    then
-        ynh_permission_update --permission="main" --remove="visitors"
-    fi
 fi
 
 #=================================================
