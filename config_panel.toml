@@ -1,5 +1,4 @@
 version = "1.0"
-name = "Leed configuration panel"
 
 [main]
 name = "Leed configuration"
