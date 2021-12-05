@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Leed (contraction de Light Feed) est un agrégateur RSS/ATOM minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive.
 
-**Version incluse :** 1.9.0~ynh2
+**Version incluse :** 1.9.0~ynh3
 
 
 
