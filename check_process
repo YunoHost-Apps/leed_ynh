@@ -18,6 +18,8 @@
 		upgrade=1
 		# 1.8.3~ynh10
 		upgrade=1	from_commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
+		# 1.9.0~ynh3
+		upgrade=1	from_commit=6c6531b9c43692a07264eaeb01b2d967c09ac0ba
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
