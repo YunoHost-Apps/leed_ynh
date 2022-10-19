@@ -7,6 +7,7 @@
         "fr": "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive"
     },
     "version": "1.11.0~ynh1",
+    "url": "https://github.com/LeedRSS/Leed",
     "upstream": {
         "license": "AGPL-3.0",
         "code": "https://github.com/LeedRSS/Leed"
