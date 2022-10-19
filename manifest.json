@@ -1,75 +1,79 @@
 {
-	"name": "Leed",
-	"id": "leed",
-	"packaging_format": 1,
-	"description": {
-		"en": "Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds",
-		"fr": "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive"
-	},
-	"version": "1.9.0~ynh3",
-	"url": "http://leed.idleman.fr/",
-	 "upstream": {
-        "license": "AGPL-3.0",
-        "website": "http://leed.idleman.fr/",
-        "code": "http://git.idleman.fr/LeedRSS/Leed"
+    "name": "Leed",
+    "id": "leed",
+    "packaging_format": 1,
+    "description": {
+        "en": "Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds",
+        "fr": "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive"
     },
-	"license": "AGPL-3.0",
-	"maintainer": {
-		"name": "",
-		"email": ""
-	},
-	"previous_maintainers": [{
-		"name": "Maniack Crudelis",
-		"email": "maniackc_dev@crudelis.fr"
-	}],
-	"requirements": {
-		"yunohost": ">= 4.3.0"
-	},
-	"multi_instance": true,
-	"services": [
-		"nginx",
-		"php7.3-fpm",
-		"mysql"
-	],
-	"arguments": {
-		"install" : [
-			{
-				"name": "domain",
-				"type": "domain"
-			},
-			{
-				"name": "path",
-				"type": "path",
-				"example": "/leed",
-				"default": "/leed"
-			},
-			{
-				"name": "admin",
-				"type": "user"
-			},
-			{
-				"name": "is_public",
-				"type": "boolean",
-				"default": false,
-				"help": {
-					"en": "A public Leed will be accessible for third party apps. By turning on 'anonymous readers' in Leed configuration, you can made your feeds public.",
-					"fr": "Un Leed public sera accessible pour les applications tierces. En autorisant 'la lecture anonyme' dans la configuration de Leed, vous pouvez rendre vos flux publics."
-				}
-			},
-			{
-				"name": "language",
-				"type": "string",
-				"ask": {
-					"en": "Choose your agregator's language",
-					"fr": "Choisissez la langue de votre agrégateur"
-				},
-				"choices" : ["en", "fr", "es"],
-				"default" : "en"
-			},
-			{
-				"name": "password",
-				"type": "password"
-			}
-		]
-	}
+    "version": "1.11.0~ynh1",
+    "upstream": {
+        "license": "AGPL-3.0",
+        "code": "https://github.com/LeedRSS/Leed"
+    },
+    "license": "AGPL-3.0",
+    "maintainer": {
+        "name": "",
+        "email": ""
+    },
+    "previous_maintainers": [
+        {
+            "name": "Maniack Crudelis",
+            "email": "maniackc_dev@crudelis.fr"
+        }
+    ],
+    "requirements": {
+        "yunohost": ">= 4.3.0"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "php7.3-fpm",
+        "mysql"
+    ],
+    "arguments": {
+        "install": [
+            {
+                "name": "domain",
+                "type": "domain"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "example": "/leed",
+                "default": "/leed"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": false,
+                "help": {
+                    "en": "A public Leed will be accessible for third party apps. By turning on 'anonymous readers' in Leed configuration, you can made your feeds public.",
+                    "fr": "Un Leed public sera accessible pour les applications tierces. En autorisant 'la lecture anonyme' dans la configuration de Leed, vous pouvez rendre vos flux publics."
+                }
+            },
+            {
+                "name": "language",
+                "type": "string",
+                "ask": {
+                    "en": "Choose your agregator's language",
+                    "fr": "Choisissez la langue de votre agrégateur"
+                },
+                "choices": [
+                    "en",
+                    "fr",
+                    "es"
+                ],
+                "default": "en"
+            },
+            {
+                "name": "admin",
+                "type": "user"
+            },
+            {
+                "name": "password",
+                "type": "password"
+            }
+        ]
+    }
 }

@@ -13,6 +13,9 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
+ynh_clean_setup () {
+	true
+}
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
@@ -22,10 +25,10 @@ ynh_abort_if_errors
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
-admin=$YNH_APP_ARG_ADMIN
 is_public=$YNH_APP_ARG_IS_PUBLIC
 language=$YNH_APP_ARG_LANGUAGE
-user_pwd=$YNH_APP_ARG_PASSWORD
+admin=$YNH_APP_ARG_ADMIN
+password=$YNH_APP_ARG_PASSWORD
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -47,8 +50,8 @@ ynh_script_progression --message="Storing installation settings..." --weight=2
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=language --value=$language
+ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=overwrite_nginx --value=1
 ynh_app_setting_set --app=$app --key=overwrite_phpfpm --value=1
 ynh_app_setting_set --app=$app --key=admin_mail_html --value=1
@@ -56,17 +59,24 @@ ynh_app_setting_set --app=$app --key=admin_mail_html --value=1
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=1
+
+ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Configuring system user..." --weight=2
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir=$final_path
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Creating a MySQL database..."
+ynh_script_progression --message="Creating a MySQL database..." --weight=1
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
@@ -87,14 +97,6 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=2
-
-# Create a dedicated NGINX config
-ynh_add_nginx_config
-
-#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
@@ -102,6 +104,14 @@ ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring NGINX web server..." --weight=2
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config
 
 #=================================================
 # SPECIFIC SETUP
@@ -116,7 +126,7 @@ ynh_permission_update --permission="main" --add="visitors"
 # Installation with curl
 ynh_script_progression --message="Finalizing installation..."
 
-ynh_local_curl "/install.php?installButton" "install_changeLngLeed=$language" "root=$domain$path_url" "mysqlHost=localhost" "mysqlLogin=$db_name" "mysqlMdp=$db_pwd" "mysqlBase=$db_name" "mysqlPrefix=leed_" "login=$admin" "password=$user_pwd"
+ynh_local_curl "/install.php?installButton" "install_changeLngLeed=$language" "root=$domain$path_url" "mysqlHost=localhost" "mysqlLogin=$db_user" "mysqlMdp=$db_pwd" "mysqlBase=$db_name" "mysqlPrefix=leed_" "login=$admin" "password=$password"
 
 # Remove the public access
 ynh_permission_update --permission="main" --remove="visitors"
@@ -125,7 +135,7 @@ ynh_permission_update --permission="main" --remove="visitors"
 # RETRIEVE SYNCHRONISATION CODE
 #=================================================
 
-code_sync=$(mysql -h localhost -u $db_name -p$db_pwd -s $db_name -e 'SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
+code_sync=$(mysql -h localhost -u $db_user -p$db_pwd -s $db_name -e 'SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
 
 #=================================================
 # SETUP CRON FILE FOR SYNCHRONISATION
@@ -152,6 +162,8 @@ ynh_script_progression --message="Configuring permissions..." --weight=2
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
@@ -169,7 +181,7 @@ ynh_systemd_action --service_name=nginx --action=reload
 # Get main domain and buid the url of the admin panel of the app.
 admin_panel="https://$(grep portal_domain /etc/ssowat/conf.json | cut -d'"' -f4)/yunohost/admin/#/apps/$app"
 
-echo "Please take note of your password for this application: '$user_pwd'.
+echo "Please take note of your password for this application: '$password'.
 
 You can configure this app easily by using the experimental __URL_TAG1__config-panel feature__URL_TAG2__$admin_panel/config-panel__URL_TAG3__.
 You can also find some specific actions for this app by using the experimental __URL_TAG1__action feature__URL_TAG2__$admin_panel/actions__URL_TAG3__.

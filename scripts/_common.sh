@@ -3,11 +3,16 @@
 #=================================================
 # COMMON VARIABLES
 #=================================================
+# PHP APP SPECIFIC
+#=================================================
 
-YNH_PHP_VERSION="7.3"
+php_dependencies="php$YNH_DEFAULT_PHP_VERSION-fpm"
+
+# dependencies used by the app (must be on a single line)
+pkg_dependencies="$php_dependencies"
 
 #=================================================
-# FUTUR OFFICIAL HELPERS
+# PERSONAL HELPERS
 #=================================================
 
 #=================================================
@@ -444,3 +449,7 @@ ynh_check_ram () {
 		echo $ram
 	fi
 }
+
+#=================================================
+# FUTURE OFFICIAL HELPERS
+#=================================================
