@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=3
+ynh_script_progression --message="Loading settings..." --weight=3
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -20,8 +20,10 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 overwrite_nginx=$(ynh_app_setting_get --app=$app --key=overwrite_nginx)
 overwrite_phpfpm=$(ynh_app_setting_get --app=$app --key=overwrite_phpfpm)
@@ -29,11 +31,11 @@ admin_mail_html=$(ynh_app_setting_get --app=$app --key=admin_mail_html)
 
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
 fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # CHECK VERSION
 #=================================================
+ynh_script_progression --message="Checking version..." --weight=1
 
 upgrade_type=$(ynh_check_app_version_changed)
 
@@ -54,7 +56,7 @@ ynh_abort_if_errors
 #=================================================
 # ACTIVATE MAINTENANCE MODE
 #=================================================
-ynh_script_progression --message="Activating maintenance mode..."
+ynh_script_progression --message="Activating maintenance mode..." --weight=1
 
 ynh_maintenance_mode_ON
 
@@ -63,7 +65,7 @@ ynh_maintenance_mode_ON
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..."
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # If final_path doesn't exist, create it
 if [ -z "$final_path" ]; then
@@ -129,10 +131,10 @@ fi
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..."
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir=$final_path
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -151,16 +153,11 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
-# NGINX CONFIGURATION
+# UPGRADE DEPENDENCIES
 #=================================================
+ynh_script_progression --message="Upgrading dependencies..." --weight=1
 
-# Overwrite the nginx configuration only if it's allowed
-if [ $overwrite_nginx -eq 1 ]
-then
-	ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
-	# Create a dedicated NGINX config
-	ynh_add_nginx_config
-fi
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -175,17 +172,29 @@ then
 fi
 
 #=================================================
+# NGINX CONFIGURATION
+#=================================================
+
+# Overwrite the nginx configuration only if it's allowed
+if [ $overwrite_nginx -eq 1 ]
+then
+	ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
+	# Create a dedicated NGINX config
+	ynh_add_nginx_config
+fi
+
+#=================================================
 # SPECIFIC UPGRADE
 #=================================================
 # RETRIEVE SYNCHRONISATION CODE
 #=================================================
 
-code_sync=$(mysql -h localhost -u $db_name -p$db_pwd -s $db_name -e 'SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
+code_sync=$(mysql -h localhost -u $db_user -p$db_pwd -s $db_name -e 'SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
 
 #=================================================
 # SETUP CRON FILE FOR SYNCHRONISATION
 #=================================================
-ynh_script_progression --message="Setting up a cron file..."
+ynh_script_progression --message="Setting up a cron file..." --weight=1
 
 ynh_add_config --template="../conf/cron_leed" --destination="/etc/cron.d/$app"
 
@@ -220,7 +229,7 @@ ynh_systemd_action --service_name=nginx --action=reload
 #=================================================
 # DEACTIVE MAINTENANCE MODE
 #=================================================
-ynh_script_progression --message="Disabling maintenance mode..."
+ynh_script_progression --message="Disabling maintenance mode..." --weight=1
 
 ynh_maintenance_mode_OFF
 
