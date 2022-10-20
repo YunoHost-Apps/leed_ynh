@@ -1,22 +1,13 @@
 ;; Test complet
 	; Manifest
 		domain="domain.tld"
-		path="/leed"
-		admin="john"
-		password="pass"
-		language="fr"
-		market=1
+		path="/path"
 		is_public=1
+		language="fr"
+		admin="john"
+		password="1Strong-Password"
     ; Actions
         is_public=0|1
-    ; Config_panel
-        main.is_public.is_public=0|1
-        main.overwrite_files.overwrite_nginx=0|1
-        main.overwrite_files.overwrite_phpfpm=0|1
-        main.global_config.email_type=0|1
-        main.php_fpm_config.footprint=low|medium|high
-        main.php_fpm_config.free_footprint=20
-        main.php_fpm_config.usage=low|medium|high
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=1
@@ -25,21 +16,14 @@
 		setup_private=1
 		setup_public=1
 		upgrade=1
-		# upgrade=1	from_commit=8b622d430db9ab860aee156a32086507669243fd
 		# 1.8.3~ynh10
 		upgrade=1	from_commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
+		# 1.9.0~ynh3
+		upgrade=1	from_commit=6c6531b9c43692a07264eaeb01b2d967c09ac0ba
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
 		change_url=1
-        actions=0
-        config_panel=0
 ;;; Options
 Email=
-Notification=change
-;;; Upgrade options
-	; commit=8b622d430db9ab860aee156a32086507669243fd
-		name=MAJ 1.8.2
-		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&password=pass&language=fr&market=1&is_public=1&
-	; commit=ea31e4850ded0939c1b0d024db8f45325fcebac1
-		name=1.8.3~ynh10
+Notification=none
