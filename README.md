@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Leed for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Working status](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Working status](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)
+
 [![Install Leed with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -18,7 +19,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fast RSS consultation and non-intrusive features.
 
 
-**Shipped version:** 1.11.0~ynh1
+**Shipped version:** 1.12.0~ynh1
 
 ## Screenshots
 

@@ -5,27 +5,28 @@ It shall NOT be edited by hand.
 
 # Leed pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)
+
 [![Installer Leed avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Leed rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Leed rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Leed (contraction de Light Feed) est un agrégateur RSS/ATOM minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive.
 
-**Version incluse :** 1.11.0~ynh1
+**Version incluse :** 1.12.0~ynh1
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Leed](./doc/screenshots/leed1.jpg)
+![Capture d’écran de Leed](./doc/screenshots/leed1.jpg)
 
 ## Documentations et ressources
 
-* Dépôt de code officiel de l'app : <https://github.com/LeedRSS/Leed>
+* Dépôt de code officiel de l’app : <https://github.com/LeedRSS/Leed>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_leed>
 * Signaler un bug : <https://github.com/YunoHost-Apps/leed_ynh/issues>
 
@@ -41,4 +42,4 @@ ou
 sudo yunohost app upgrade leed -u https://github.com/YunoHost-Apps/leed_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
