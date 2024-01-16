@@ -24,8 +24,9 @@ ynh_script_progression --message="Upgrading source files..." --weight=1
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1
 
+chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -46,7 +47,7 @@ ynh_script_progression --message="Finalizing upgrade..."
 
 ynh_local_curl "/"
 
-code_sync=$(mysql -h localhost -u $db_user -p$db_pwd -s $db_name -e 'SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
+code_sync=$(ynh_mysql_execute_as_root --database="$app" --sql='SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
 ynh_add_config --template="../conf/cron_leed" --destination="/etc/cron.d/$app"
 
 #=================================================
