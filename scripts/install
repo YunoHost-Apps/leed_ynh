@@ -51,7 +51,7 @@ ynh_local_curl "/install.php?installButton" \
     "password=$password"
 
 # Create cron file
-code_sync=$(ynh_mysql_execute_as_root --sql='SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
+code_sync=$(ynh_mysql_execute_as_root --database="$app" --sql='SELECT value FROM leed_configuration WHERE `key`="synchronisationCode"' | sed -n 1p)
 ynh_add_config --template="cron_leed" --destination="/etc/cron.d/$app"
 
 #=================================================
