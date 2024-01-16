@@ -1,5 +1,3 @@
-Please take note of your password for this application: '__PASSWORD__'.
-
 You can configure this app easily by using the experimental [config-panel feature](https://__DOMAIN__/yunohost/admin/#/apps/__APP__/config-panel).
 You can also find some specific actions for this app by using the experimental [action feature](https://__DOMAIN__/yunohost/admin/#/apps/__APP__/actions).
 
