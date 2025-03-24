@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Leed YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/leed)](https://ci-apps.yunohost.org/ci/apps/leed/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/leed)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/leed)
 
 [![Instalatu Leed YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
@@ -19,7 +21,7 @@ EZ editatu eskuz.
 Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fast RSS consultation and non-intrusive features.
 
 
-**Paketatutako bertsioa:** 1.14.0~ynh1
+**Paketatutako bertsioa:** 1.14.0~ynh2
 
 ## Pantaila-argazkiak
 

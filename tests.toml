@@ -4,5 +4,18 @@ test_format = 1.0
 
 [default]
 
-    test_upgrade_from.ea31e4.name = "1.8.3~ynh10"
-    test_upgrade_from.6c6531.name = "1.9.0~ynh3"
+    # ------------
+    # Tests to run
+    # ------------
+
+    # -------------------------------
+    # Default args to use for install
+    # -------------------------------
+
+    # -------------------------------
+    # Commits to test upgrade from
+    # -------------------------------
+
+    # test_upgrade_from.ea31e4.name = "1.8.3~ynh10"
+    # test_upgrade_from.6c6531.name = "1.9.0~ynh3"
+    test_upgrade_from.94fbf326fad9e6afe30cdd6fcc252593504a64b2.name = "Upgrade from 1.14.0~ynh1"
