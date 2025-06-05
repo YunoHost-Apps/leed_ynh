@@ -16,7 +16,7 @@ license = "AGPL-3.0"
 code = "https://github.com/LeedRSS/Leed"
 
 [integration]
-yunohost = ">= 11.2.18"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
@@ -74,12 +74,11 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = [
-        "php8.2-fpm",
-        "php8.2-simplexml",
-        "php8.2-mysqli",
-        "php8.2-curl",
-        "php8.2-gd",
-        "php8.2-mbstring",
+        "php8.4-simplexml",
+        "php8.4-mysqli",
+        "php8.4-curl",
+        "php8.4-gd",
+        "php8.4-mbstring",
         "mariadb-server",
     ]
 
