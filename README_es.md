@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Leed para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/leed)](https://ci-apps.yunohost.org/ci/apps/leed/)
+![Estado funcional](https://apps.yunohost.org/badge/state/leed)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/leed)
 
 [![Instalar Leed con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
@@ -19,7 +21,7 @@ No se debe editar a mano.
 Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fast RSS consultation and non-intrusive features.
 
 
-**Versión actual:** 1.14.0~ynh1
+**Versión actual:** 1.14.0~ynh2
 
 ## Capturas
 
@@ -33,7 +35,7 @@ Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fas
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/leed_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/leed_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Leed
 
-[![集成程度](https://dash.yunohost.org/integration/leed.svg)](https://dash.yunohost.org/appci/app/leed) ![工作状态](https://ci-apps.yunohost.org/ci/badges/leed.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/leed.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/leed)](https://ci-apps.yunohost.org/ci/apps/leed/)
+![工作状态](https://apps.yunohost.org/badge/state/leed)
+![维护状态](https://apps.yunohost.org/badge/maintained/leed)
 
 [![使用 YunoHost 安装 Leed](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=leed)
 
@@ -19,7 +21,7 @@
 Leed (short for Light Feed) is a minimalist RSS/ATOM aggregator which offers fast RSS consultation and non-intrusive features.
 
 
-**分发版本：** 1.14.0~ynh1
+**分发版本：** 1.14.0~ynh2
 
 ## 截图
 
