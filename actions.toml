@@ -10,5 +10,5 @@ description = "Change the public access of the app."
     [public_private.arguments]
         [public_private.arguments.is_public]
             type = "boolean"
-            ask = "Is it a public app ?"
+            ask = "Is it a public app?"
             default = true
