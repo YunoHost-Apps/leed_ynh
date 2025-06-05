@@ -22,7 +22,7 @@ ynh_replace --match="https://$old_domain$old_path" --replace="https://$domain$pa
 #=================================================
 ynh_script_progression "Updating the database..."
 
-ynh_psql_db_shell "$app" <<< "UPDATE leed_configuration SET value='$domain$path/' WHERE value LIKE '%${old_domain}%'"
+ynh_psql_db_shell <<< "UPDATE leed_configuration SET value='$domain$path/' WHERE value LIKE '%${old_domain}%'"
 
 #=================================================
 # END OF SCRIPT
