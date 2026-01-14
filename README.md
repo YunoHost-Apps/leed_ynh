@@ -10,12 +10,16 @@ It shall NOT be edited by hand.
 
 Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds
 
-[![Version: 1.14.0~ynh2](https://img.shields.io/badge/Version-1.14.0~ynh2-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/leed/)
+[![Version: 1.15.1~ynh1](https://img.shields.io/badge/Version-1.15.1~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/leed/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/leed"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
 <a href="https://github.com/YunoHost-Apps/leed_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
+
+
+## Screenshots
+![Screenshot of Leed](./doc/screenshots/leed1.jpg)
 
 ## 📦 Developer info
 
