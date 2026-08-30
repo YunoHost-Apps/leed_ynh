@@ -7,7 +7,7 @@ name = "Leed"
 description.en = "Minimalistic RSS feed aggregator which allows quick and non-intrusive reading of feeds"
 description.fr = "Agrégateur RSS minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive"
 
-version = "1.15.2~ynh1"
+version = "1.15.3~ynh1"
 
 maintainers = []
 
@@ -57,8 +57,8 @@ ram.runtime = "50M"
 
 [resources]
     [resources.sources.main]
-    url = "https://github.com/LeedRSS/Leed/archive/refs/tags/v1.15.2.tar.gz"
-    sha256 = "434c64621429028844b066597fc62847a47e503f99d22b4237665937f4348db7"
+    url = "https://github.com/LeedRSS/Leed/archive/refs/tags/v1.15.3.tar.gz"
+    sha256 = "a769a10fa6043e847a714428d6f6718f8daeb63042f28980a54f484acfd52f92"
 
     autoupdate.strategy = "latest_github_tag"
     autoupdate.asset = "tarball"
